@@ -1,0 +1,36 @@
+NOMBRE                                    || TIPODATO   || VALOR                                               || LONGITUD 
+x                                         ||            ||                                                     ||          
+z                                         ||            ||                                                     ||          
+a                                         ||            ||                                                     ||          
+b                                         ||            ||                                                     ||          
+c                                         ||            ||                                                     ||          
+variable1                                 ||            ||                                                     ||          
+y                                         ||            ||                                                     ||          
+p1                                        ||            ||                                                     ||          
+_23                                       ||            || 23                                                  ||          
+_-15.6                                    ||            || -15.6                                               ||          
+_.6                                       ||            || .6                                                  ||          
+_5.                                       ||            || 5.                                                  ||          
+_hola                                     ||            || hola                                                || 4        
+_10                                       ||            || 10                                                  ||          
+_42                                       ||            || 42                                                  ||          
+_34                                       ||            || 34                                                  ||          
+_Pepe                                     ||            || Pepe                                                || 4        
+_pepito                                   ||            || pepito                                              || 6        
+_123                                      ||            || 123                                                 ||          
+_a es mas grande que b                    ||            || a es mas grande que b                               || 21       
+_1                                        ||            || 1                                                   ||          
+_50                                       ||            || 50                                                  ||          
+_0                                        ||            || 0                                                   ||          
+_a es igual a 50 y b es igual a 0         ||            || a es igual a 50 y b es igual a 0                    || 32       
+_200                                      ||            || 200                                                 ||          
+_1000                                     ||            || 1000                                                ||          
+_b es igual a 200                         ||            || b es igual a 200                                    || 16       
+_hola Mundo                               ||            || hola Mundo                                          || 10       
+_2                                        ||            || 2                                                   ||          
+_-53                                      ||            || -53                                                 ||          
+_11                                       ||            || 11                                                  ||          
+_8                                        ||            || 8                                                   ||          
+_55                                       ||            || 55                                                  ||          
+_7                                        ||            || 7                                                   ||          
+_3                                        ||            || 3                                                   ||          
