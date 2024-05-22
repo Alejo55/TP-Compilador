@@ -44,8 +44,8 @@ PUNTO               ["."]
 
 /* Id y Constantes */
 ID                  {LETRAMINUS}({LETRAMINUS}|{LETRAMAYUS}|{DIGITO}|{GUION_BAJO})*
-CONST_ENT           (-?{DIGITONOZERO}{DIGITO}{0,4})|0
-CONST_REAL          -?({DIGITO}+{PUNTO}{DIGITO}*)|({DIGITO}*{PUNTO}{DIGITO}+)
+CONST_ENT           (-?{DIGITONOZERO}{DIGITO}*)|0
+CONST_REAL          -?(({DIGITO}+{PUNTO}{DIGITO}*)|({DIGITO}*{PUNTO}{DIGITO}+))
 CONST_STR           \"[^"]*\"
 
 /* Operadores */
