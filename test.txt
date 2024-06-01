@@ -1,0 +1,200 @@
+*- PRUEBAS VALIDAS -*
+
+*- Comentario *- Anidado -* Comentario -*
+
+*- Declaracion variables -*
+init {
+    x, z, a, b, c, var_entera : Int
+    variable1, var_flotante : Float
+    y, p1, var_cadena : String
+}
+
+*- Asignaciones -*
+x := 23
+variable1 := -15.6
+variable1 := .6
+variable1 := 5.
+y := "hola"
+
+z := x := a := 2 * 1 + 3
+
+*- Seleccion -*
+si(x < 10)
+{
+    x := 23
+}
+sino
+{
+    x := 42
+}
+
+*- Seleccion con AND -*
+si(x>10 AND x<23)
+{
+    x := 23
+}
+sino
+{
+    x := 42
+}
+
+*- Seleccion con OR (comparando ids) y escribir -*
+si(b<a OR x>z)
+{
+    escribir("Pepe")
+}
+sino
+{
+    y := "pepito"
+}
+
+*- Seleccion Anidados y NOT-*
+si(z>123)
+{
+    si(NOT x< 2)
+    {
+        x:=23
+    }
+}
+
+*- Mientras y escribir -*
+mientras (a > b)
+{
+    escribir("a es mas grande que b")
+    a := a + 1
+}
+
+*- Seleccion y Mientras -*
+si(z <> 23)
+{
+    mientras(z<>23)
+    {
+        z := z+1
+    }
+}
+
+*- Mientras anidados -*
+mientras (a > b)
+{
+    mientras(NOT b>10)
+    {
+        b := b+1
+    }
+    a := a + 1
+}
+
+*- Mientras y Seleccion -*
+mientras (a < b )
+{
+    si (a <> 50)
+    {
+        a := 50
+        b := 0
+        escribir("a es igual a 50 y b es igual a 0")
+    }
+    sino
+    {
+        b := 200
+        a := 1000
+        escribir("b es igual a 200")
+    }
+}
+
+*- Mientras con OR -*
+mientras (x<>a OR b==200)
+{
+    escribir("hola Mundo")
+    b := b+1
+}
+
+*- Mientras Seleccion Mientras -*
+
+mientras(x<>z)
+{
+    si( z < x)
+    {
+        mientras(z<x)
+        {
+            z := z+1
+        }
+    }
+    sino
+    {
+        mientras(z>x)
+        {
+            x := x + 1
+        }
+    }
+}
+
+
+*- Leer -*
+leer(p1)
+
+*- Tema Especial Contar Primos -*
+z:=x:=0
+a:=b:=2
+c:=-53
+x := ContarPrimos([11,b+8,2,55,z*b+7,c])
+
+*- Tema Especial Until Loop -*
+x := 0
+UntilLoop(11>x, x:=3+x)
+
+
+*--*
+*--*
+*--*
+*--*
+*- CASOS DE ERROR -*
+
+*- Descomentar para verificar rango de enteros superado: -*
+*- x := 50235 -*
+
+*- Descomentar para verificar rango de reales superado: -*
+*- variable1 := 1111111111111111111111111111111111111111111111111.11111111111111111111111111111 -*
+
+*- Descomentar para verificar longitud maxima de string superada: -*
+*- p1 := "estacadenasuperaralacantidadpermitidadporunstringcuyalongitudmaximaes40" -*
+
+*- Descomentar para verificar longitud maxima de ID superada: -*
+*- esteidsuperaralalongitudmaximade30 := 1 -*
+
+*- Descomentar para verificar error por asignacion -*
+*- var_entera := 1.4 -*
+*- var_cadena :=  1 -*
+*- var_flotante := "pepe" -*
+
+*- Descomentar para verificar error por variable no declarada -*
+*- no_declarada := "pepe" -*
+
+*- Descomentar para verificar error por expresion con id del tipo string -*
+*- x := 1 + 4 * var_cadena -*
+
+*- Descomentar para verificar error en asignacion multiple -*
+*- var_entera := x := var_cadena := 2 * 3 -*
+*- var_entera := var_flotante := 2 -*
+*- var_cadena := y := 1 -*
+
+*- descomentar para verificar error por comparacion -*
+
+*- si(var_entera > var_cadena)
+{
+    var_entera := 1
+} -*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
