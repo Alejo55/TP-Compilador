@@ -1,0 +1,53 @@
+NOMBRE                                    || TIPODATO        || VALOR                                               || LONGITUD 
+x                                         || Int             ||                                                     ||          
+z                                         || Int             ||                                                     ||          
+a                                         || Int             ||                                                     ||          
+b                                         || Int             ||                                                     ||          
+c                                         || Int             ||                                                     ||          
+var_entera                                || Int             ||                                                     ||          
+variable1                                 || Float           ||                                                     ||          
+var_flotante                              || Float           ||                                                     ||          
+y                                         || String          ||                                                     ||          
+p1                                        || String          ||                                                     ||          
+var_cadena                                || String          ||                                                     ||          
+_cte_23                                   || CTE_INTEGER     || 23.0                                                ||          
+@auxAsigNum                               || Float           ||                                                     ||          
+_cte_neg15_6                              || CTE_FLOAT       || -15.6                                               ||          
+_cte_0_6                                  || CTE_FLOAT       || 0.6                                                 ||          
+_cte_5_0                                  || CTE_FLOAT       || 5.0                                                 ||          
+_cte_hola                                 || CTE_STRING      || "hola"                                              || 4        
+@auxAsigString                            || String          ||                                                     ||          
+_cte_2                                    || CTE_INTEGER     || 2.0                                                 ||          
+_cte_1                                    || CTE_INTEGER     || 1.0                                                 ||          
+_cte_3                                    || CTE_INTEGER     || 3.0                                                 ||          
+_cte_30                                   || CTE_INTEGER     || 30.0                                                ||          
+_cte_60                                   || CTE_INTEGER     || 60.0                                                ||          
+_cte_10                                   || CTE_INTEGER     || 10.0                                                ||          
+_cte_42                                   || CTE_INTEGER     || 42.0                                                ||          
+_cte_5                                    || CTE_INTEGER     || 5.0                                                 ||          
+_cte_Pepe                                 || CTE_STRING      || "Pepe"                                              || 4        
+_cte_pepito                               || CTE_STRING      || "pepito"                                            || 6        
+_cte_123                                  || CTE_INTEGER     || 123.0                                               ||          
+_cte_a_es_mas_grande_que_b                || CTE_STRING      || "a es mas grande que b"                             || 21       
+_cte_200                                  || CTE_INTEGER     || 200.0                                               ||          
+_cte_hola_Mundo                           || CTE_STRING      || "hola Mundo"                                        || 10       
+_cte_Ingresar_cte_string                  || CTE_STRING      || "Ingresar cte string"                               || 19       
+_cte_cte_string_ingresada_es              || CTE_STRING      || "cte string ingresada es"                           || 23       
+_cte_neg53                                || CTE_INTEGER     || -53.0                                               ||          
+_cte_7                                    || CTE_INTEGER     || 7.0                                                 ||          
+@auxCP                                    || Float           || 0.0                                                 ||          
+_cte_Resultado_CP_es                      || CTE_STRING      || "Resultado CP es"                                   || 15       
+_cte_15                                   || CTE_INTEGER     || 15.0                                                ||          
+_cte_11                                   || CTE_INTEGER     || 11.0                                                ||          
+_cte_resultado_de_x_en_UP_es              || CTE_STRING      || "resultado de x en UP es"                           || 23       
+@auxAssembler10                           || Float           ||                                                     ||          
+@auxAssembler9                            || Float           ||                                                     ||          
+@auxAssembler8                            || Float           ||                                                     ||          
+@auxAssembler7                            || Float           ||                                                     ||          
+@auxAssembler6                            || Float           ||                                                     ||          
+@auxAssembler5                            || Float           ||                                                     ||          
+@auxAssembler4                            || Float           ||                                                     ||          
+@auxAssembler3                            || Float           ||                                                     ||          
+@auxAssembler2                            || Float           ||                                                     ||          
+@auxAssembler1                            || Float           ||                                                     ||          
+@auxAssembler0                            || Float           ||                                                     ||          

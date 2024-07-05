@@ -21,9 +21,9 @@ int verificarRangoReal(char* ptr);
 int verificarLongitudString(char* ptr);
 int verificarLongitudID(char *ptr);
 
-void agregarLexema(char *simboloNombre, char* tipoDato, char* valor, char* longitud);
-void agregarLexemaString(char *simboloNombre);
-void agregarLexemaNum(char* simboloNombre, char* tipoNum);
+void agregarLexema(char *nombre, char* tipoDato, char* valor, char* longitud);
+void agregarLexemaString(char *string);
+void agregarLexemaNum(char* numero, char* tipoNum);
 
 void errorLexico();
 
@@ -132,11 +132,11 @@ COMENTARIO_ANIDADO  "*-"[^\-\%\&\|\;\@\#\^\~\$]*{COMENTARIO}[^\-\%\&\|\;\@\#\^\~
 {COMA}              {return COMA;}
 {DOS_PUNTOS}        {return DOS_PUNTOS;}
 
-{CONST_ENT}         {verificarRangoEntero(yytext);strcpy(yylval.str_val, yytext); agregarLexemaNum(yytext, "CTE_INTEGER"); return CONST_ENT;}
-{CONST_REAL}        {verificarRangoReal(yytext);strcpy(yylval.str_val, yytext); agregarLexemaNum(yytext, "CTE_FLOAT"); return CONST_REAL;}
-{CONST_STR}         {verificarLongitudString(yytext);strcpy(yylval.str_val, yytext); agregarLexemaString(yytext); return CONST_STR;}
+{CONST_ENT}         {verificarRangoEntero(yytext); agregarLexemaNum(yytext, "CTE_INTEGER"); return CONST_ENT;}
+{CONST_REAL}        {verificarRangoReal(yytext); agregarLexemaNum(yytext, "CTE_FLOAT"); return CONST_REAL;}
+{CONST_STR}         {verificarLongitudString(yytext); agregarLexemaString(yytext); return CONST_STR;}
 
-{ID}                {verificarLongitudID(yytext);strcpy(yylval.str_val, yytext); agregarLexema(yytext, "", "", ""); return ID;}
+{ID}                {verificarLongitudID(yytext); agregarLexema(yytext, "", "", ""); return ID;}
 
 {COMENTARIO_ANIDADO}   
 {COMENTARIO}  
@@ -197,23 +197,25 @@ int verificarLongitudID(char *ptr)
     return 0;
 }
 
-void agregarLexemaString(char *simboloNombre)
+void agregarLexemaString(char *string)
 {
-    int longitud;
     char nombreString[100];
-    char valor[100];
+    char aux[100];
     char strLongitud[3];
     int j=0, i=0, ocurrencias=0;
+    int longitud;
 
-    // Copiar el guión bajo al inicio de nombreString
-    nombreString[0] = '_';
-    nombreString[1] = '\0';    
+    strcpy(nombreString, "_cte_");    
 
     while(ocurrencias < 2 )
     {
-        if(simboloNombre[i] != '"')
+        if(string[i] != '"')
         {
-            valor[j]= simboloNombre[i];
+            if(string[i] == ' ')
+                aux[j] = '_';
+            else
+                aux[j] = string[i];
+            
             j++;
         }
         else
@@ -221,37 +223,98 @@ void agregarLexemaString(char *simboloNombre)
 
         i++;
     }
-    valor[j] = '\0';
+    aux[j] = '\0';
 
-    strcat(nombreString, valor);
-    longitud = strlen(valor);
+    strcat(nombreString, aux);
+    longitud = strlen(aux);
     sprintf(strLongitud, "%d", longitud);
 
-    agregarLexema(nombreString, "CTE_STRING", valor, strLongitud);
+    agregarLexema(nombreString, "CTE_STRING", string, strLongitud);
 }
 
-void agregarLexemaNum(char* simboloNombre, char* tipoNum)
+void agregarLexemaNum(char* numero, char* tipoNum)
 {
     char nombreNum[100];
-    
-    nombreNum[0] = '_';
-    nombreNum[1] = '\0';
-    strcat(nombreNum, simboloNombre);
+    char valorNum[100];
+    char aux[100];
 
-    agregarLexema(nombreNum, tipoNum, simboloNombre, "");
+    strcpy(nombreNum, "_cte_");
+
+    if(!strcmp(tipoNum, "CTE_INTEGER"))
+    {
+        if(numero[0] == '-')
+        {
+            sprintf(aux, "neg%s", numero+1);
+            strcat(nombreNum, aux);
+        }
+        else
+            strcat(nombreNum, numero);
+        
+        strcpy(valorNum, numero);
+        strcat(valorNum, ".0"); // En TS estara como flotante para cargar mas facil a assembler
+    }
+    else
+    { 
+        int i = 0, j = 0;
+    
+        // Iterar sobre la cadena original
+        while (numero[i] != '\0') 
+        {
+            if (numero[i] == '.') 
+            {
+                // Verificar y ajustar el dígito antes del punto
+                if (i == 0 || numero[i - 1] == '-') // Puede pasar que el punto sea lo primero o que antes del punto haya un menos
+                { 
+                    valorNum[j] = '0'; // Agregar '0' si no hay dígito antes del punto
+                    j++;
+                    valorNum[j] = '.';
+                }
+                // Verificar y ajustar el dígito después del punto
+                else if (numero[i + 1] == '\0') 
+                {
+                    valorNum[j] = '.';
+                    j++;
+                    valorNum[j] = '0'; // Agregar '0' si no hay dígito después del punto
+                }
+                else
+                    valorNum[j] = '.';
+            }
+            else
+                valorNum[j]=numero[i];
+
+            i++;
+            j++;
+        }
+        
+        valorNum[j] = '\0'; // Agregar el carácter nulo al final de la cadena procesada
+
+        strcpy(aux, valorNum);
+        char* posicion = strchr(aux, '.');
+        *posicion = '_';
+        if (aux[0] == '-')
+        {
+            strcat(nombreNum, "neg");
+            strcat(nombreNum, aux+1); // Todo esto sera mi nombre de cte 
+        }
+        else
+            strcat(nombreNum, aux); // Todo esto sera mi nombre de cte 
+    }
+
+    agregarLexema(nombreNum, tipoNum, valorNum, "");
 }
 
-void agregarLexema(char *simboloNombre, char *tipoDato, char *valor, char *longitud)
+void agregarLexema(char *nombre, char *tipoDato, char *valor, char *longitud)
 {
     t_lexema lex;
-    if( !buscarEnlista(&listaTS, simboloNombre, &lex) )
+    if( !buscarEnlista(&listaTS, nombre, &lex) )
     {
-        strcpy(lex.nombre, simboloNombre);
+        strcpy(lex.nombre, nombre);
         strcpy(lex.tipoDato, tipoDato);
         strcpy(lex.valor, valor);
         strcpy(lex.longitud, longitud);
         insertarFinalLista(&listaTS, lex);
     }
+    strcpy(yylval.str_val, nombre);
 }
 
 void errorLexico()

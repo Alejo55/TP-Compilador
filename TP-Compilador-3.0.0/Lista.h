@@ -32,3 +32,5 @@ int listaVacia(const t_lista *l);
 void vaciarLista(t_lista *l);
 
 void buscarYactualizar(t_lista* lista, const char* nombre, const char* tipo_Dato);
+
+void duplicarLista( t_lista *dirListaOriginal, t_lista *dirListaDuplicado );

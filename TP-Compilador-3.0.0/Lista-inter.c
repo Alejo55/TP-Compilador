@@ -39,6 +39,19 @@ int extraer_primero_de_lista_inter ( t_lista_cod_inter *dirLista, char *cadena)
     return TRUE;
 }
 
+int buscar_lista_inter(const t_lista_cod_inter *l, const char *nombre)
+{
+    while(*l && strcmp( (*l)->cadena, nombre ) != 0)
+    {
+        l = &(*l)->sig;
+    }
+
+    if (*l)
+        return TRUE;
+    
+    return FALSE;
+}
+
 int buscar_y_actualizar_inter ( t_lista_cod_inter *dirLista, int numCelda, char* cadenaReemplazo )
 {
     int celdaActual=0;
@@ -62,6 +75,19 @@ int buscar_y_actualizar_inter ( t_lista_cod_inter *dirLista, int numCelda, char*
     return FALSE;
 }
 
+int ver_ultimo_lista_inter(t_lista_cod_inter *l, char* cadena)
+{
+    if(!*l)
+        return 0;
+
+    while((*l)->sig)
+        l = &(*l)->sig;
+
+    strcpy(cadena, (*l)->cadena);
+
+    return 1;
+}
+
 int lista_inter_vacia(t_lista_cod_inter *dirLista)
 {
     if( *dirLista == NULL)
@@ -69,4 +95,13 @@ int lista_inter_vacia(t_lista_cod_inter *dirLista)
     return FALSE;
 }
 
+void duplicar_lista_cod_intermedio( t_lista_cod_inter *dirListaOrig, t_lista_cod_inter *dirListaDuplicado )
+{
+    *dirListaDuplicado = NULL;
+    while( (*dirListaOrig) != NULL)
+    {
+        insertar_en_lista_inter(dirListaDuplicado, (*dirListaOrig)->cadena);
+        dirListaOrig=&((*dirListaOrig)->sig);
+    }
+}
 

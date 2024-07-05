@@ -100,3 +100,13 @@ void buscarYactualizar(t_lista* lista, const char* nombre, const char* tipo_Dato
         actual = actual->sig;
     }
 }
+
+void duplicarLista( t_lista *dirListaOriginal, t_lista *dirListaDuplicado )
+{
+    *dirListaDuplicado=NULL;
+    while(*dirListaOriginal != NULL)
+    {
+        insertarFinalLista( dirListaDuplicado, (*dirListaOriginal)->lexema );
+        dirListaOriginal= &((*dirListaOriginal)->sig);
+    }
+}
